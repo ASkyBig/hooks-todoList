@@ -18,3 +18,43 @@
     font-size: 24px;
     padding: 16px;
 }
+ul {
+    padding: 0;
+}
+.todos {
+    list-style: none;
+}
+.todo-item {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 40px;
+    padding: 20px 0;
+}
+
+.todo-item:nth-child(2n){
+   background: lightblue;
+}
+.todo-item input {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: 0 20px;
+}
+
+.todo-item lable {
+    flex: 1;
+    padding: 15px 15px 15px 0;
+    line-height: 1.2;
+    display: block;
+}
+
+.todo-item label.complete {
+    text-decoration: line-through;
+}
+
+.todo-item button {
+    position: absolute;
+    right: 20px;
+}

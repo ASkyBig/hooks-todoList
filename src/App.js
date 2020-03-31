@@ -9,7 +9,7 @@ function Control(props) {
 
     const onSubmit =(e) => {
         e.preventDefault()
-        const newText = inputRef.current.vlaue.trim()
+        const newText = inputRef.current.value.trim()
         if (newText.length === 0) {
             return
         }
@@ -60,7 +60,7 @@ function Todos(props) {
             {
                 todos.map(todo => {
                     return (
-                        <TodoItem />
+                        <TodoItem key={todo.id} todo={todo} removeTodo={removeTodo} toggleTodo={toggleTodo}/>
                     )
                 })
             }
