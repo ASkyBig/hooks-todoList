@@ -1,4 +1,4 @@
-import React, {useCallback, useState, useRef} from 'react';
+import React, {useCallback, useState, useRef, useEffect} from 'react';
 import './App.css'
 
 let idSeq = Date.now()
@@ -89,6 +89,18 @@ function TodoList() {
                 : todo
         }))
     }, [])
+
+    useEffect(() => {
+        console.log("localStorage.getItem('todos')", localStorage.getItem('todos'))
+        const todos = JSON.parse(localStorage.getItem('todos')) || []
+        setTodos(todos)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos))
+    }, [todos])
+
+
 
   return (
       <div className="todo-list">
