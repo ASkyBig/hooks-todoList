@@ -1,9 +1,10 @@
-import React, {useCallback, useState, useRef, useEffect} from 'react';
+import React, {useCallback, useState, useRef, useEffect, memo} from 'react';
 import './App.css'
 
 let idSeq = Date.now()
 
-function Control(props) {
+const Control = memo((props) => {
+    console.log('control props', props)
     const inputRef = useRef(null)
     const { addTodo } = props
 
@@ -27,8 +28,8 @@ function Control(props) {
             <input type='text' ref={inputRef} className="new-todo" placeholder="new thing to be done"/>
         </form>
     </div>
-}
-function TodoItem(props) {
+})
+const TodoItem = memo((props) => {
     const {
         todo: {
             id,
@@ -52,8 +53,9 @@ function TodoItem(props) {
             <button onClick={onRemove}>&#xd7;</button>
         </li>
     )
-}
-function Todos(props) {
+})
+
+const Todos = memo((props) => {
     const { todos, toggleTodo, removeTodo } = props
     return (
         <ul>
@@ -66,7 +68,7 @@ function Todos(props) {
             }
         </ul>
     )
-}
+})
 
 function TodoList() {
     const [todos, setTodos] = useState([])
@@ -95,12 +97,10 @@ function TodoList() {
         const todos = JSON.parse(localStorage.getItem('todos')) || []
         setTodos(todos)
     }, [])
-    
+
     useEffect(() => {
         localStorage.setItem('todos', JSON.stringify(todos))
     }, [todos])
-
-
 
   return (
       <div className="todo-list">
